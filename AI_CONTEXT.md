@@ -1,32 +1,78 @@
-# AI Context
+# AI_CONTEXT.md
 
-## AI Usage
+# AI Tools Used
 
-AI was used as a development assistant during this assignment to support implementation and problem-solving.
+ChatGPT (OpenAI) was used as a development assistant throughout the implementation of this assignment.
 
-The primary areas where AI was used include:
+The tool was used to discuss implementation approaches, review code, debug issues, validate Laravel best practices, and improve documentation. All generated suggestions were manually reviewed, adapted, tested, and integrated into the final solution.
 
-- Discussing Laravel architecture and best practices.
-- Reviewing code and suggesting improvements.
-- Debugging specific issues during development.
+---
+
+# Where AI Helped
+
+AI assisted in the following areas:
+
+- Discussing the overall Laravel project structure.
+- Designing the service layer and queue-based transaction flow.
+- Reviewing controller and service responsibilities.
+- Suggesting validation rules and Laravel best practices.
+- Optimizing dashboard statistics queries.
+- Identifying and debugging implementation issues.
+- Reviewing code quality and project organization.
 - Preparing project documentation (README and AI_CONTEXT).
 
-All code was manually reviewed, integrated, tested, and modified where required before being included in the project.
+---
 
-## Manual Work
+# What Required Manual Correction or Redesign
 
-The following were implemented and verified manually:
+Several AI suggestions required manual refinement before being incorporated into the project.
 
-- Database design and migrations
-- Payment transaction workflow
-- Queue integration
-- Dashboard implementation
-- Transaction management
-- Validation rules
-- Testing and debugging
-- UI customization
-- Final project integration
+Examples include:
 
-## Note
+- Simplifying the architecture to better align with the assignment scope.
+- Adjusting controller organization for improved maintainability.
+- Refining dashboard statistics and cache invalidation.
+- Improving customer-side validation and loading behavior.
+- Cleaning project structure and removing unnecessary components.
+- Verifying all AI-generated code through testing and debugging before inclusion.
 
-AI was used as a reference and code review assistant. Final implementation decisions, debugging, testing, and verification were performed manually to ensure the solution met the assignment requirements.
+---
+
+# Architectural Decisions and Tradeoffs
+
+The following architectural decisions were made during development:
+
+- Implemented a Service Layer to keep controllers lightweight.
+- Used Laravel Queues for asynchronous payment processing.
+- Chose a simulated payment provider since the assignment required a payment simulation rather than integration with a real gateway.
+- Implemented idempotency support for API requests.
+- Added an authenticated Admin Dashboard while keeping the customer payment portal publicly accessible.
+- Used Laravel Cache to improve dashboard statistics performance with cache invalidation on transaction updates.
+
+Tradeoffs:
+
+- A payment provider interface was considered but intentionally not introduced because the project currently supports only a single simulated provider. Introducing additional abstraction at this stage would increase complexity without providing immediate value for the assignment requirements.
+- Customer authentication was intentionally omitted because the assignment focused on payment processing and administration rather than customer account management.
+
+---
+
+# What I Would Improve With More Time
+
+Given additional time, I would extend the project with:
+
+- Multiple payment provider support (Stripe, Razorpay, PayPal) using a provider interface.
+- Customer authentication and payment history.
+- UUID-based transaction URLs.
+- Webhook verification.
+- Email notifications.
+- Search and advanced filtering for transactions.
+- Transaction export functionality.
+- Role-based authorization.
+- Unit and feature test coverage.
+- Docker configuration for simplified deployment.
+
+---
+
+# Verification
+
+All AI-generated suggestions were manually reviewed, tested, and modified where necessary. The final implementation reflects decisions made after validating the project requirements, Laravel best practices, and application behavior.
