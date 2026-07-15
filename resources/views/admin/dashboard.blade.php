@@ -50,6 +50,17 @@
             </div>
         </div>
 
+        <div class="col-md-3">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h6>Processing</h6>
+                    <h3 class="text-info">
+                        {{ $dashboard['statistics']['processing_transactions'] }}
+                    </h3>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div class="row mt-4 g-3">

@@ -19,7 +19,10 @@
             <div class="card shadow">
 
                 <div class="card-header text-center">
-                    <h4>Payment Gateway</h4>
+                    <h4>Customer Payment Portal</h4>
+                    <p class="text-muted mb-4">
+                      Securely submit your payment request. Your transaction will be processed asynchronously.
+                    </p>
                 </div>
 
                 <div class="card-body">
@@ -35,7 +38,8 @@
                                 type="text"
                                 name="customer_name"
                                 class="form-control"
-                                value="{{ old('customer_name') }}"
+                                value="{{ old('customer_name') }}" 
+                                required pattern="[A-Za-z ]+" maxlength="255"
                             >
 
                             @error('customer_name')
@@ -51,7 +55,7 @@
                                 type="email"
                                 name="customer_email"
                                 class="form-control"
-                                value="{{ old('customer_email') }}"
+                                value="{{ old('customer_email') }}" required 
                             >
 
                             @error('customer_email')
@@ -69,7 +73,7 @@
                                 step="0.01"
                                 name="amount"
                                 class="form-control"
-                                value="{{ old('amount') }}"
+                                value="{{ old('amount') }}" required min="1" step="0.01"
                             >
 
                             @error('amount')
@@ -84,7 +88,7 @@
 
                             <select
                                 name="currency"
-                                class="form-select"
+                                class="form-select" required
                             >
                                 <option value="INR">INR</option>
                                 <option value="USD">USD</option>

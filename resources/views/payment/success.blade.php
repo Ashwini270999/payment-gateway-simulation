@@ -19,13 +19,13 @@
             <div class="card shadow">
 
                 <div class="card-header bg-success text-white text-center">
-                    <h4>Payment Submitted Successfully</h4>
+                    <h4>Payment Request Received</h4>
                 </div>
 
                 <div class="card-body">
 
                     <p class="mb-3">
-                        Your payment request has been submitted successfully.
+                        Your payment request has been received and is being processed.
                     </p>
 
                     <table class="table table-bordered">

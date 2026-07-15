@@ -1,59 +1,251 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Payment Gateway Simulation System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
 
-## About Laravel
+This project is a Laravel 12 based payment gateway simulation system that demonstrates a simplified real-world payment processing workflow.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The application allows customers to submit payment requests through a web interface or REST API. Payment processing is handled asynchronously using Laravel Queues, while administrators can monitor transactions through a secure dashboard.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Features
 
-## Learning Laravel
+## Customer Portal
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- Submit payment requests
+- Client-side and server-side validation
+- Payment acknowledgement page
+- Transaction reference generation
+- Loading indicator during submission
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## REST API
 
-## Laravel Sponsors
+- Create payment transactions
+- JSON responses
+- Request validation
+- Idempotency support
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Endpoint:
 
-### Premium Partners
+```
+POST /api/transactions
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Payment Processing
 
-## Contributing
+- Queue-based asynchronous processing
+- Simulated payment provider
+- Automatic transaction status updates
+- Provider response logging
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Admin Dashboard
 
-## Code of Conduct
+Authenticated administrators can:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- View dashboard statistics
+- Monitor recent transactions
+- Browse transaction history
+- View transaction details
 
-## Security Vulnerabilities
+Dashboard statistics include:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Total Transactions
+- Successful Transactions
+- Failed Transactions
+- Pending Transactions
+- Processing Transactions
+- Total Payment Volume
+- Successful Payment Volume
+- Today's Transactions
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Technology Stack
+
+- PHP 8.2
+- Laravel 12
+- MySQL
+- Bootstrap 5
+- Laravel Breeze
+- Laravel Queue
+- Laravel Cache
+
+---
+
+# Installation
+
+Clone the repository
+
+```bash
+git clone <repository-url>
+```
+
+Install dependencies
+
+```bash
+composer install
+```
+
+Copy environment file
+
+```bash
+cp .env.example .env
+```
+
+Generate application key
+
+```bash
+php artisan key:generate
+```
+
+Update database credentials in `.env`.
+
+Run migrations
+
+```bash
+php artisan migrate
+```
+
+---
+
+# Database
+
+The submission includes a sample database export.
+
+File:
+
+```
+pay_flow.sql
+```
+
+Import the SQL file into MySQL if you wish to use the provided sample data.
+
+---
+
+# Queue Worker
+
+Start the queue worker
+
+```bash
+php artisan queue:work
+```
+
+---
+
+# Run Application
+
+```bash
+php artisan serve
+```
+
+Customer Portal
+
+```
+http://127.0.0.1:8000
+```
+
+Admin Login
+
+```
+http://127.0.0.1:8000/login
+```
+
+---
+
+# API
+
+## Create Transaction
+
+```
+POST /api/transactions
+```
+
+Example Request
+
+```json
+{
+    "customer_name": "John Doe",
+    "customer_email": "john@example.com",
+    "amount": 1500,
+    "currency": "INR"
+}
+```
+
+Optional Header
+
+```
+Idempotency-Key: unique-request-key
+```
+
+---
+
+# Project Structure
+
+```
+app/
+    Enums/
+    Http/
+    Jobs/
+    Models/
+    Services/
+
+resources/
+    views/
+        admin/
+        payment/
+        transactions/
+
+routes/
+    api.php
+    web.php
+```
+
+---
+
+# Design Decisions
+
+- Thin Controllers
+- Service Layer Architecture
+- Queue-based asynchronous processing
+- Dashboard statistics caching
+- Enum-based transaction status management
+- Shared business logic between Web and API
+- Idempotency support for payment requests
+
+---
+
+# Assumptions
+
+- Payment provider is simulated.
+- Queue worker is running.
+- Only administrators require authentication.
+- Customers can submit payment requests without registration.
+
+---
+
+# Future Enhancements
+
+- Multiple payment providers
+- Customer authentication
+- UUID based transaction URLs
+- Email notifications
+- Advanced search and filters
+- Export reports
+- Role-based access control
+
+---
+
+# Additional Files
+
+The submission includes:
+
+- `README.md`
+- `AI_CONTEXT.md`
+- `.env.example`
+- `pay_flow.sql`
+
+---
+
+# Author
+
+Ashwini
