@@ -138,19 +138,39 @@ php artisan queue:work
 php artisan serve
 ```
 
-Customer Portal
+## Customer Portal
 
 ```
 http://127.0.0.1:8000
 ```
 
-Admin Login
+## Admin Login
+
+```
+http://127.0.0.1:8000/login
+
+```
+## Admin Credentials
+
+Use the following credentials to access the Admin Dashboard.
+
+**URL**
 
 ```
 http://127.0.0.1:8000/login
 ```
 
----
+**Email**
+
+```
+admin@example.com
+```
+
+**Password**
+
+```
+Admin@123
+```
 
 # API
 
